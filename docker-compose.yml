@@ -36,6 +36,8 @@ services:
     volumes:
         # 永続化することでコンテナ削除してもOK
         - "./docker/pgsql/data:/var/lib/postgresql/data"
+        # dbスクリプト
+        - "./docker/pgsql/init:/docker-entrypoint-initdb.d"
     networks:
      - larapgsql
 
