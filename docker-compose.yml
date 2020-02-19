@@ -1,0 +1,41 @@
+version: '3'
+services:
+  php5:
+    container_name: "php7"
+    build:
+        context: "./docker/php7"
+        dockerfile: "Dockerfile"
+    ports:
+        - "8080:80"
+    volumes:
+        - .:/var/www/html
+    networks:
+     - larapgsql
+  node:
+    container_name: "node"
+    build:
+      context: ./docker/node
+      dockerfile: Dockerfile
+    volumes:
+        - .:/var/www/html
+    tty: true
+    ports:
+        - "3000:3000"
+    networks:
+     - larapgsql
+  db:
+    container_name: "db"
+    build:
+      context: ./docker/pgsql
+      dockerfile: Dockerfile
+    ports:
+     - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    networks:
+     - larapgsql
+
+networks:
+  larapgsql:
+    driver: "bridge"
