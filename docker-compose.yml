@@ -33,6 +33,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
+    volumes:
+        # 永続化することでコンテナ削除してもOK
+        - "./docker/pgsql/data:/var/lib/postgresql/data"
     networks:
      - larapgsql
 

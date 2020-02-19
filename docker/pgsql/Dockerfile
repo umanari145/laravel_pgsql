@@ -1,1 +1,1 @@
-FROM pascalgrimaud/postgresql:9.3
+FROM postgres:9.3
