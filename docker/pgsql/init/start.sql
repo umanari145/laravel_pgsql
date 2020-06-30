@@ -14,7 +14,13 @@ CREATE TABLE persons (
   delivery_address1 varchar(100) DEFAULT '',
   delivery_address2 varchar(100) DEFAULT '',
   traffic json DEFAULT NULL,
-  contents texte,
+  contents text,
   created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-)
+);
+
+
+INSERT INTO persons (person_name, sex) VALUES 
+('山田太郎',1);
+INSERT INTO persons (person_name, sex) VALUES 
+('山田花子',2);

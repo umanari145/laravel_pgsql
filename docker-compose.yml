@@ -32,10 +32,10 @@ services:
      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=postgres
     volumes:
         # 永続化することでコンテナ削除してもOK
-        - "./docker/pgsql/data:/var/lib/postgresql/data"
+        - "pgvolume:/var/lib/postgresql/data"
         # dbスクリプト
         - "./docker/pgsql/init:/docker-entrypoint-initdb.d"
     networks:
@@ -44,3 +44,6 @@ services:
 networks:
   larapgsql:
     driver: "bridge"
+
+volumes: 
+  pgvolume:
