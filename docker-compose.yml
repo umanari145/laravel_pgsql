@@ -1,7 +1,7 @@
 version: '3'
 services:
-  php5:
-    container_name: "php7"
+  web:
+    container_name: "larapg_php7"
     build:
         context: "./docker/php7"
         dockerfile: "Dockerfile"
@@ -12,7 +12,7 @@ services:
     networks:
      - larapgsql
   node:
-    container_name: "node"
+    container_name: "larapg_node"
     build:
       context: ./docker/node
       dockerfile: Dockerfile
@@ -24,7 +24,7 @@ services:
     networks:
      - larapgsql
   db:
-    container_name: "db"
+    container_name: "larapg_db"
     build:
       context: ./docker/pgsql
       dockerfile: Dockerfile
@@ -35,7 +35,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
         # 永続化することでコンテナ削除してもOK
-        - "pgvolume:/var/lib/postgresql/data"
+        # - "pgvolume:/var/lib/postgresql/data"
         # dbスクリプト
         - "./docker/pgsql/init:/docker-entrypoint-initdb.d"
     networks:
@@ -44,6 +44,6 @@ services:
 networks:
   larapgsql:
     driver: "bridge"
-
-volumes: 
-  pgvolume:
+        
+#volumes: 
+#  pgvolume:

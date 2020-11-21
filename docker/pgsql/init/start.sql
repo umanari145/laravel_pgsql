@@ -19,6 +19,24 @@ CREATE TABLE persons (
   updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE custom_users (
+  user_id  SERIAL PRIMARY KEY,
+  user_name varchar(255) ,
+  email varchar(255) unique,
+  password varchar(255) ,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users (
+  id  SERIAL PRIMARY KEY,
+  name varchar(255) ,
+  email varchar(255) unique,
+  password varchar(255) ,
+  remenber_token varchar(100),
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
 INSERT INTO persons (person_name, sex) VALUES 
 ('山田太郎',1);
