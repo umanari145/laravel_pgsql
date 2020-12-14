@@ -28,9 +28,21 @@ php artisan make:auth
 ```
 その後、下記コマンドでルーティングを確認できる。
 ```
-php artisan route;ost
+php artisan route;list
 ```
 
+#### token認証
+usersにapi_tokenテーブル追加後、
+
+```
+curl -H 'Accept: application/json'  \
+-H 'Authorization:Bearer 保存されたトークン' \
+(URL) 
+
+
+http://localhost:8080/api/user?api_token=トークンの文字列
+
+````
 
 ### DIに関する考察
 参考URL 
