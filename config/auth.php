@@ -14,8 +14,14 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+// 通常認証
+//        'guard' => 'web',
+//        'passwords' => 'users',
+
+// apiサーバとしてjwttokenを使いたいので web を api に変更
+//jwt 認証
+            'guard' => 'api',
+            'passwords' => 'users',
     ],
 
     /*
@@ -42,8 +48,11 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            //通常のtoken
+//            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
+            'hash' => false
         ],
     ],
 
