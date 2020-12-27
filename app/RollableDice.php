@@ -6,4 +6,3 @@ interface RollableDice
 {
     public function roll():int;
 }
-

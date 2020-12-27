@@ -61,3 +61,19 @@ App\RollableDice
 実体となるClass(内部の記述)
 App\Dice
 App\LoadDice
+
+## jwt認証に関して
+
+https://blog.proglearn.com/2020/04/21/%E3%80%902020%E5%B9%B44%E6%9C%88-%E6%99%82%E7%82%B9%E3%80%91laravel%E3%81%A7jwt%E8%AA%8D%E8%A8%BC%EF%BC%81-jwt-auth-%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86/
+
+```
+#ライブラリインストール
+composer require tymon/jwt-auth 1.0.0-rc2
+
+#プロバイダ作成
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+
+#秘密鍵生成
+php artisan jwt:secret
+
+````
