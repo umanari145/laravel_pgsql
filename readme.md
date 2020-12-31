@@ -73,15 +73,21 @@ php artisan db:seed
 
 https://blog.proglearn.com/2020/04/21/%E3%80%902020%E5%B9%B44%E6%9C%88-%E6%99%82%E7%82%B9%E3%80%91laravel%E3%81%A7jwt%E8%AA%8D%E8%A8%BC%EF%BC%81-jwt-auth-%E5%B0%8E%E5%85%A5%E6%89%8B%E9%A0%86/
 
+
+https://qiita.com/aminevsky/items/9f45e0ffb5b14c3b5b50#jwt%E8%AA%8D%E8%A8%BC
+
 ```
 #ライブラリインストール
-composer require tymon/jwt-auth 1.0.0-rc2
+composer require tymon/jwt-auth
 
 #プロバイダ作成
 php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 
 #秘密鍵生成
 php artisan jwt:secret
+
+#.envに下記のような文字列が測れる
+JWT_SECRET＝XXXXXXXXXXXXXXXXXXX
 
 #jwt認証用のコントローラー
 JwtAuthController.php
@@ -91,7 +97,33 @@ curl -X POST 'http://localhost:8080/api/auth/login' \
 -H 'accept: application/json'  \
 -H 'content-type: application/json'  \
 -d ' {
-  "email": "jparisian@example.org",
+  "email": "DBに入っているユーザーのemail",
   "password": "testtest"
 }'
+
+#下記のようなレスポンスが帰って来ればOK
+{"access_token":"XXXXXXXXXXXXXXXXXXX","token_type":"bearer","expires_in":3600}
+#失敗時
+{"error":"Unauthorized"}
+
+#api_tokenをBearer XXXXの中に入れる
+curl -X POST 'http://localhost:8080/api/auth/me' \
+-H 'accept: application/json'  \
+-H 'content-type: application/json'  \
+-H 'Authorization: Bearer XXXX'
+
+#下記のようにユーザー情報が帰って来ればOK!
+
+{
+  "id":1,
+  "name":"XXXXXXXX",
+  "email":"XXXXXXX",
+  "created_at":"2020-12-31 07:45:53",
+  "updated_at":"2020-12-31 07:45:53",
+  "api_token":null
+}
+
+#NGの場合、下記のようなメッセージが
+{"message":"Unauthenticated."}
+
 ````
